@@ -18,6 +18,7 @@
   "homepage": "https://github.com/robertbenjamin/bit-bus#readme",
   "dependencies": {
     "bitbar": "^0.3.0",
+    "moment": "^2.13.0",
     "superagent": "^2.0.0"
   }
 }
