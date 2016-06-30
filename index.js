@@ -16,6 +16,7 @@ const busAPIKey = require('./src/API_KEY.js') || 'TEST';
 
 var busStop = 18610;
 var busAPI = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_${busStop}.json?key=${busAPIKey}&minutesAfter=70`;
+var menuColor = bitbar.darkMode ? 'white' : 'black';
 
 request
 .get(busAPI)
@@ -28,8 +29,9 @@ request
     })
     .map(function(trip) {
       var newTrip = {};
+
       newTrip.scheduledArrival = moment(trip.scheduledArrivalTime).fromNow();
-      if (!trip.predictedArrivalTime == 0) {
+      if (trip.predictedArrivalTime) {
         newTrip.predictedArrival = moment(trip.predictedArrivalTime).fromNow();
       }
 
@@ -38,16 +40,16 @@ request
 
   var menu = [];
   menu.push({
-    text: ':bus: ' + trips[0].predictedArrival || trips[0].scheduledArrival,
-    color: trips[0].predictedArrival ? 'white' : '#ff4136'
+    text: ':bus: ' + (trips[0].predictedArrival || trips[0].scheduledArrival),
+    color: trips[0].predictedArrival ? menuColor : '#ff4136'
   });
 
   menu.push(bitbar.sep);
 
   trips.slice(1).forEach(function(trip) {
     menu.push({
-      text: ':point_right: ' + trip.predictedArrival || trip.scheduledArrival,
-      color: trip.predictedArrival ? 'white' : '#ff4136'
+      text: ':point_right: ' + (trip.predictedArrival || trip.scheduledArrival),
+      color: trip.predictedArrival ? menuColor : '#ff4136'
     })
   });
 
