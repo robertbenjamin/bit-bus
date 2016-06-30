@@ -12,7 +12,7 @@
 const bitbar = require('bitbar');
 const request = require('superagent');
 const moment = require('moment');
-const busAPIKey = require('./API_KEY.js') || 'TEST';
+const busAPIKey = require('./src/API_KEY.js') || 'TEST';
 
 var busStop = 18610;
 var busAPI = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_${busStop}.json?key=${busAPIKey}`;
