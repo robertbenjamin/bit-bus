@@ -10,16 +10,20 @@ This applet relies on the OneBusAway API and thus only works in cities where the
 
 **To install:**
 
-Install BitBar, [following these directions](https://github.com/matryer/bitbar#get-started).
-
-Clone this repo to the plugin directory you set above.
-
-[Use this map](http://onebusaway.org/where/standard/) to find the #ID of the bus stop you'd like to track.
-
-In index.js, change the value of the `busStop` variable to the #ID.
-
-In the root directory, run:
+- Clone this repo to a directory of your choice.
+- [Use this map](http://onebusaway.org/where/standard/) to find the #ID of the bus stop you'd like to track.
+- In index.js, change the value of the `busStop` variable to the #ID.
+- In the root directory, run:
 ```
 npm i
 ```
+
+- Install BitBar, [following these directions](https://github.com/matryer/bitbar#get-started).
+- In your terminal, navigate to the plugin directory you created when you installed Bitbar and run:
+```
+ln -s /path/to/clones_bitbus/index.js bitbus.10s.js
+chmod +x bitbus.10s.js
+```
+
+The `10s` above is the refresh interval and can be customized to your liking (e.g. 30s, 2m, 1h).
 
