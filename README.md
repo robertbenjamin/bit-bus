@@ -1,8 +1,10 @@
 # bit-bus
 
-![Bitbus, in all it's glory.](http://i.imgur.com/ExtTiwf.png)
+![Bitbus, in all it's glory.](http://i.imgur.com/s5GbKRq.png)
 
 A BitBar menubar app for seeing when the next bus arrives at my work.
+
+The latest bus on the menubar is at the top, with subsequent arrivals available on click. If the time is red, it means it's based on the bus schedule rather than the real-time API prediction.
 
 ## Installation
 
@@ -27,3 +29,4 @@ chmod +x bitbus.10s.js
 
 The `10s` above is the refresh interval and can be customized to your liking (e.g. 30s, 2m, 1h).
 
+Enjoy!
