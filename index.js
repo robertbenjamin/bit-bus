@@ -13,14 +13,10 @@ request
 .get(busAPI)
 .end(function(err, res) {
   var response = JSON.parse(res.text);
-  console.log(response);
 
-  var currentTime = response.currentTime;
-  
 
   bitbar([
       {
-          text: currentTime,
           color: bitbar.darkMode ? 'white' : 'red',
           dropdown: false
       },
