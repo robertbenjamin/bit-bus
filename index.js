@@ -5,7 +5,7 @@
 // <bitbar.author>Robert Benjamin</bitbar.author>
 // <bitbar.author.github>robertbenjamin</bitbar.author.github>
 // <bitbar.desc>A BitBar menubar app for seeing when the next bus arrives at my work.</bitbar.desc>
-// <bitbar.image>http://i.imgur.com/8hbAT6S.png</bitbar.image>
+// <bitbar.image>http://i.imgur.com/zjuQRQF.png</bitbar.image>
 // <bitbar.dependencies>node,superagent,momentjs</bitbar.dependencies>
 // <bitbar.abouturl>https://github.com/robertbenjamin/bit-bus</bitbar.abouturl>
 
