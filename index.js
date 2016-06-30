@@ -17,8 +17,6 @@ const busAPIKey = require('./src/API_KEY.js') || 'TEST';
 var busStop = 18610;
 var busAPI = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_${busStop}.json?key=${busAPIKey}`;
 
-var busInfo = {};
-
 request
 .get(busAPI)
 .end(function(err, res) {
