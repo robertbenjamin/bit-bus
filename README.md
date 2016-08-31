@@ -23,7 +23,7 @@ npm i
 - Install BitBar, [following these directions](https://github.com/matryer/bitbar#get-started).
 - In your terminal, navigate to the plugin directory you created when you installed Bitbar and run:
 ```
-ln -s /path/to/clones_bitbus/index.js bitbus.10s.js
+ln -s /path/to/cloned_bitbus/index.js bitbus.10s.js
 chmod +x bitbus.10s.js
 ```
 
