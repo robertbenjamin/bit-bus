@@ -14,50 +14,46 @@ const request = require('superagent');
 const moment = require('moment');
 const busAPIKey = require('./src/API_KEY.js') || 'TEST';
 
-var busStop = 18610;
-var busAPI = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_${busStop}.json?key=${busAPIKey}&minutesAfter=70`;
-var menuColor = bitbar.darkMode ? 'white' : 'black';
-var warningColor = '#ff4136';
+let busStop = 18610;
+let busAPI = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_${busStop}.json?key=${busAPIKey}&minutesAfter=70`;
+let menuColor = bitbar.darkMode ? 'white' : 'black';
+let warningColor = '#ff4136';
 
 request
 .get(busAPI)
-.end(function(err, res) {
+.end((err, res) => {
   if (err || !res.ok) {
     bitbar([{
       text: ':bus: no internet :(',
-      color: menuColor
+      color: warningColor
     }]);
     return;
   }
 
-  var response = JSON.parse(res.text);
+  let response = JSON.parse(res.text);
 
-  var trips = response.data.entry.arrivalsAndDepartures
-    .filter(function(trip) {
-      return trip.routeShortName == '32';
-    })
-    .map(function(trip) {
-      var newTrip = {};
+  let trips = response.data.entry.arrivalsAndDepartures
+    .filter((trip) => trip.routeShortName === '32')
+    .map((trip) => {
+      let newTrip = {};
 
       newTrip.scheduledArrival = moment(trip.scheduledArrivalTime).fromNow();
-      if (trip.predictedArrivalTime) {
-        newTrip.predictedArrival = moment(trip.predictedArrivalTime).fromNow();
-      }
+      if (trip.predictedArrivalTime) newTrip.predictedArrival = moment(trip.predictedArrivalTime).fromNow();
 
       return newTrip;
     });
 
-  var menu = [];
+  let menu = [];
   menu.push({
-    text: ':bus: ' + (trips[0].predictedArrival || trips[0].scheduledArrival),
+    text: `:bus: ${trips[0].predictedArrival || trips[0].scheduledArrival}`,
     color: trips[0].predictedArrival ? menuColor : warningColor
   });
 
   menu.push(bitbar.sep);
 
-  trips.slice(1).forEach(function(trip) {
+  trips.slice(1).forEach((trip) => {
     menu.push({
-      text: ':point_right: ' + (trip.predictedArrival || trip.scheduledArrival),
+      text: `:point_right: ${trip.predictedArrival || trip.scheduledArrival}`,
       color: trip.predictedArrival ? menuColor : warningColor
     })
   });
