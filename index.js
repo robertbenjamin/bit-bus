@@ -22,6 +22,14 @@ var notRealTimeColor = '#ff4136';
 request
 .get(busAPI)
 .end(function(err, res) {
+  if (err || !res.ok) {
+    bitbar([{
+      text: ':bus: no internet :(',
+      color: menuColor
+    }]);
+    return;
+  }
+  
   var response = JSON.parse(res.text);
 
   var trips = response.data.entry.arrivalsAndDepartures
@@ -55,4 +63,5 @@ request
   });
 
   bitbar(menu);
+
 });
