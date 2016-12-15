@@ -22,42 +22,41 @@ let warningColor = '#ff4136';
 request
 .get(busAPI)
 .end((err, res) => {
-  if (err || !res.ok) {
-    bitbar([{
-      text: ':bus: no internet :(',
-      color: warningColor
-    }]);
-    return;
-  }
+  if (err || !res.ok) bitbar([{ text: ':bus: no internet :(', color: warningColor }]);
 
   let response = JSON.parse(res.text);
+  let trips = response.data.entry.arrivalsAndDepartures;
 
-  let trips = response.data.entry.arrivalsAndDepartures
-    .filter((trip) => trip.routeShortName === '32')
-    .map((trip) => {
-      let newTrip = {};
+  if (!!trips) {
+    bitbar([{ text: ':bus: no more trips', color: warningColor }]);
+  } else {
+    let myTrips = trips
+      .filter((trip) => trip.routeShortName === '32')
+      .map((trip) => {
+        let newTrip = {};
 
-      newTrip.scheduledArrival = moment(trip.scheduledArrivalTime).fromNow();
-      if (trip.predictedArrivalTime) newTrip.predictedArrival = moment(trip.predictedArrivalTime).fromNow();
+        newTrip.scheduledArrival = moment(trip.scheduledArrivalTime).fromNow();
+        if (trip.predictedArrivalTime) newTrip.predictedArrival = moment(trip.predictedArrivalTime).fromNow();
 
-      return newTrip;
+        return newTrip;
+      });
+
+    let menu = [];
+
+    menu.push({
+      text: `:bus: ${myTrips[0].predictedArrival || myTrips[0].scheduledArrival}`,
+      color: myTrips[0].predictedArrival ? menuColor : warningColor
     });
 
-  let menu = [];
-  menu.push({
-    text: `:bus: ${trips[0].predictedArrival || trips[0].scheduledArrival}`,
-    color: trips[0].predictedArrival ? menuColor : warningColor
-  });
+    menu.push(bitbar.sep);
 
-  menu.push(bitbar.sep);
+    myTrips.slice(1).forEach((trip) => {
+      menu.push({
+        text: `:point_right: ${trip.predictedArrival || trip.scheduledArrival}`,
+        color: trip.predictedArrival ? menuColor : warningColor
+      })
+    });
 
-  trips.slice(1).forEach((trip) => {
-    menu.push({
-      text: `:point_right: ${trip.predictedArrival || trip.scheduledArrival}`,
-      color: trip.predictedArrival ? menuColor : warningColor
-    })
-  });
-
-  bitbar(menu);
-
+    bitbar(menu);
+  }
 });
