@@ -27,7 +27,7 @@ request
   let response = JSON.parse(res.text);
   let trips = response.data.entry.arrivalsAndDepartures;
 
-  if (!!trips) {
+  if (!!!trips) {
     bitbar([{ text: ':bus: no more trips', color: warningColor }]);
   } else {
     let myTrips = trips
