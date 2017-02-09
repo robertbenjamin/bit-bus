@@ -27,12 +27,12 @@ request
   let response = JSON.parse(res.text);
   let trips = response.data.entry.arrivalsAndDepartures;
 
-  if (!!!trips) {
+  if (trips.length === 0) {
     bitbar([{ text: ':bus: no more trips', color: warningColor }]);
   } else {
     let myTrips = trips
-      .filter((trip) => trip.routeShortName === '32')
-      .map((trip) => {
+      .filter(trip => trip.routeShortName === '32')
+      .map(trip => {
         let newTrip = {};
 
         newTrip.scheduledArrival = moment(trip.scheduledArrivalTime).fromNow();
@@ -50,7 +50,7 @@ request
 
     menu.push(bitbar.sep);
 
-    myTrips.slice(1).forEach((trip) => {
+    myTrips.slice(1).forEach(trip => {
       menu.push({
         text: `:point_right: ${trip.predictedArrival || trip.scheduledArrival}`,
         color: trip.predictedArrival ? menuColor : warningColor
