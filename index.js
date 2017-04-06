@@ -1,4 +1,4 @@
-#!/usr/bin/env /Users/robertbenjamin/.nodenv/versions/6.10.1/bin/node
+#!/usr/bin/env /usr/local/bin/node
 
 // <bitbar.title>BitBus</bitbar.title>
 // <bitbar.version>v1.0</bitbar.version>
