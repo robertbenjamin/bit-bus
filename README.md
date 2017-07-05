@@ -4,7 +4,7 @@
 
 A BitBar menubar app for seeing when the next :bus: arrives at my work.
 
-The latest bus is displayed on the menubar, with subsequent arrivals available on click. If the time is red, it means it's based on the bus schedule rather than the real-time API prediction.
+The latest bus is displayed on the menubar, with subsequent arrivals available on click. If the time is red, it means it's based on the bus schedule rather than the API's real-time prediction.
 
 ## Installation
 
