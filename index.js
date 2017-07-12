@@ -14,7 +14,7 @@ const request = require('superagent');
 const moment = require('moment');
 const busAPIKey = require('./src/API_KEY.js') || 'TEST';
 
-let busStop = 18610;
+let busStop = 18620;
 let busAPI = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_${busStop}.json?key=${busAPIKey}&minutesAfter=70`;
 let menuColor = bitbar.darkMode ? 'white' : 'black';
 let warningColor = '#ff4136';
